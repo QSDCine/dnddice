@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>D&amp;D - Roll Dice</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0b0f14" />
+  <link rel="icon" type="image/png" href="icon-192.png" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app" role="application" aria-label="Roll dice for DnD">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+  <svg viewBox="0 0 64 64" class="d20" aria-hidden="true">
+    <path d="M32 4 L56 20 L52 48 L32 60 L12 48 L8 20 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path d="M32 4 L32 60" fill="none" stroke="currentColor" stroke-width="2" opacity="0.7"/>
+    <path d="M8 20 L56 20" fill="none" stroke="currentColor" stroke-width="2" opacity="0.7"/>
+    <path d="M12 48 L52 48" fill="none" stroke="currentColor" stroke-width="2" opacity="0.7"/>
+    <path d="M8 20 L32 60 L56 20" fill="none" stroke="currentColor" stroke-width="2" opacity="0.7"/>
+    <path d="M12 48 L32 4 L52 48" fill="none" stroke="currentColor" stroke-width="2" opacity="0.7"/>
+  </svg>
+</div>
+
+        <div class="title">
+          <h1>D&amp;D - Roll the dice!</h1>
+        </div>
+      </div>
+
+      <button id="btnCombat" class="iconBtn" type="button" aria-label="Panel de combate" title="Panel de combate">
+        🛡️
+      </button>
+    </header>
+
+    <section class="card">
+      <div class="controls">
+        <label class="field">
+          <span class="label">Qty:</span>
+          <input id="qty" type="number" inputmode="numeric" min="1" max="100" value="1" />
+        </label>
+
+        <label class="field">
+          <span class="label">Dice:</span>
+          <select id="die">
+            <option value="2">d2</option>
+            <option value="4">d4</option>
+            <option value="6">d6</option>
+            <option value="8">d8</option>
+            <option value="10">d10</option>
+            <option value="12">d12</option>
+            <option value="20" selected>d20</option>
+            <option value="100">d100</option>
+          </select>
+        </label>
+
+        <button id="btnAD" class="adBtn" type="button" aria-label="Advantage and Disadvantage">
+          A/D
+        </button>
+
+        <button id="btnRoll" class="primary" type="button">
+          ROLL!
+        </button>
+
+
+      </div>
+
+      <div id="output" class="output" tabindex="0" role="button" aria-label="Ready to roll!">
+        <div class="outputEmpty">Ready to roll!</div>
+      </div>
+        <div class="controls">
+        <button id="btnClear" class="secondary" type="button">
+          Reset
+        </button>
+        </div>
+    </section>
+
+    <section id="combatPanel" class="combat hidden" aria-label="Combat">
+      <div class="combatHeader">
+        <h2>Combat</h2>
+        <button id="btnCombatClose" class="iconBtn" type="button" aria-label="Close" title="Close">✕</button>
+      </div>
+
+      <div class="combatGrid">
+        <label class="field">
+          <span class="label">AC</span>
+          <input id="ac" type="number" inputmode="numeric" min="0" max="99" placeholder="18" />
+        </label>
+
+        <label class="field">
+          <span class="label">Max HP</span>
+          <input id="maxhp" type="number" inputmode="numeric" min="-100" max="2000" placeholder="50" />
+        </label>
+          <label class="field">
+          <span class="label">HP</span>
+          <input id="hp" type="number" inputmode="numeric" min="-100" max="2000" placeholder="50" />
+        </label>
+
+        <label class="field">
+          <span class="label">Counter</span>
+          <input id="counter" type="number" inputmode="numeric" min="-100" max="999" placeholder="10" />
+        </label>
+
+        <button id="btnCombatReset" class="secondary wide" type="button">
+          Reset
+        </button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span id="status" class="status">&copy; Wildcrow</span>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
