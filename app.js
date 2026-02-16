@@ -120,15 +120,16 @@ function renderRollLine({ qty, sides, rolls, total }) {
 }
 
 function renderADLine({ mode, a, b, chosen }) {
-  // "1d20 ADV = (7, 15) -> 15"
   const label = mode === "adv" ? "ADV" : "DIS";
+  const labelCls = mode === "adv" ? "advTag" : "disTag";
 
   const spanA = coloredNum(a, 20);
   const spanB = coloredNum(b, 20);
   const spanChosen = coloredNum(chosen, 20);
 
-  return `<div class="rollLine">1d20 ${label} = (${spanA}, ${spanB}) -> ${spanChosen}</div>`;
+  return `<div class="rollLine">1d20 <span class="${labelCls}">${label}</span> = (${spanA}, ${spanB}) -> ${spanChosen}</div>`;
 }
+
 
 function coloredNum(v, sides) {
   const isMin = v === 1;

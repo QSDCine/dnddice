@@ -347,6 +347,16 @@ body { overflow-x: hidden; }
   text-align: right;
 }
 
+.advTag{
+  color: var(--good);
+  font-weight: 800;
+}
+
+.disTag{
+  color: var(--bad);
+  font-weight: 800;
+}
+
 
 
 @media (max-width: 560px) {
