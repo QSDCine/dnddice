@@ -36,6 +36,28 @@
       </button>
     </header>
 
+<div id="combatHud" class="combatHud hidden">
+  <div class="hudLine">
+    <span class="hudText">AC: <strong id="hudAc">—</strong></span>
+    <span class="hudText">Max HP: <strong id="hudMaxHp">—</strong></span>
+  </div>
+
+  <div class="hudLine">
+    <label class="hudField">
+      <span>HP</span>
+      <input id="hudHp" type="number" inputmode="numeric" />
+    </label>
+
+    <label class="hudField">
+      <span>Counter</span>
+      <input id="hudCounter" type="number" inputmode="numeric" />
+    </label>
+
+    <button id="hudOpenCombat" class="secondary hudBtn" type="button" style="display: none;">Edit</button>
+  </div>
+</div>
+
+
     <section class="card">
       <div class="controls">
         <label class="field">

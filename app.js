@@ -18,6 +18,14 @@ const hpEl = qs("#hp");
 const counterEl = qs("#counter");
 const statusEl = qs("#status");
 
+const combatHud = qs("#combatHud");
+const hudAc = qs("#hudAc");
+const hudMaxHp = qs("#hudMaxHp");
+const hudHp = qs("#hudHp");
+const hudCounter = qs("#hudCounter");
+const hudOpenCombat = qs("#hudOpenCombat");
+
+
 // ADV/DIS states: normal -> adv -> dis -> normal
 const AD_STATES = ["normal", "adv", "dis"];
 let adState = "normal";
@@ -190,6 +198,7 @@ function loadCombatState() {
   if (maxhp !== null) maxHpEl.value = maxhp;
   if (hp !== null) hpEl.value = hp;
   if (counter !== null) counterEl.value = counter;
+  refreshHud();
 }
 
 
@@ -198,6 +207,7 @@ function saveCombatState() {
   localStorage.setItem(LS.MAXHP, maxHpEl.value ?? "");
   localStorage.setItem(LS.HP, hpEl.value ?? "");
   localStorage.setItem(LS.COUNTER, counterEl.value ?? "");
+  refreshHud();
 }
 
 
@@ -252,6 +262,24 @@ function initEvents() {
   });
 }
 
+function refreshHud() {
+  const ac = acEl.value || localStorage.getItem(LS.AC) || "";
+  const maxhp = maxHpEl.value || localStorage.getItem(LS.MAXHP) || "";
+  const hp = hpEl.value || localStorage.getItem(LS.HP) || "";
+  const counter = counterEl.value || localStorage.getItem(LS.COUNTER) || "";
+
+  // mostrar HUD solo si hay “algo” guardado
+  const any = (ac || maxhp || hp || counter);
+  combatHud.classList.toggle("hidden", !any);
+
+  hudAc.textContent = ac || "—";
+  hudMaxHp.textContent = maxhp || "—";
+
+  hudHp.value = hp;
+  hudCounter.value = counter;
+}
+
+
 function registerServiceWorker() {
   if (!("serviceWorker" in navigator)) {
     statusEl.textContent = "Sin Service Worker.";
@@ -267,6 +295,26 @@ function registerServiceWorker() {
     }
   });
 }
+
+hudHp.addEventListener("input", () => {
+  hpEl.value = hudHp.value;
+  saveCombatState();
+});
+
+hudCounter.addEventListener("input", () => {
+  counterEl.value = hudCounter.value;
+  saveCombatState();
+});
+
+hudOpenCombat.addEventListener("click", () => {
+  toggleCombatPanel(true);
+});
+
+btnCombatClose.addEventListener("click", () => {
+  toggleCombatPanel(false);
+  refreshHud();
+});
+
 
 function init() {
   // Defaults

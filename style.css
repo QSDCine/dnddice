@@ -249,6 +249,62 @@ button.secondary:hover { background: var(--btn2); }
   color: rgba(255,255,255,0.92);
 }
 
+.output {
+  overflow-x: hidden;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+body { overflow-x: hidden; }
+.app { overflow-x: hidden; }
+
+.output {
+  max-height: 20vh;
+  overflow-y: auto;
+}
+
+.combatHud{
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+}
+
+.hudLine{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.hudText{
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.hudText strong{
+  color: var(--text);
+}
+
+.hudField{
+  display: grid;
+  gap: 4px;
+  flex: 1;
+  min-width: 120px;
+}
+
+.hudField span{
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.hudBtn{
+  height: 42px;
+  align-self: end;
+}
+
+
 
 @media (max-width: 560px) {
   .controls {
