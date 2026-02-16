@@ -1,5 +1,3 @@
-/* Dice Offline - simple, dark-only, offline-friendly */
-
 const qs = (sel) => document.querySelector(sel);
 
 const qtyEl = qs("#qty");
