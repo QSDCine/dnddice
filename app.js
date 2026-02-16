@@ -68,6 +68,21 @@ function updateADVisibility() {
   }
 }
 
+// Qty: al tocar, selecciona todo (móvil-friendly)
+function selectAll(el) {
+  // iOS/Android a veces necesitan un micro-delay
+  setTimeout(() => {
+    try {
+      el.focus({ preventScroll: true });
+      el.select();
+      // fallback por si select() no funciona en algún dispositivo
+      if (typeof el.setSelectionRange === "function") {
+        el.setSelectionRange(0, el.value.length);
+      }
+    } catch {}
+  }, 0);
+}
+
 function paintADButton() {
   btnAD.classList.remove("state-normal", "state-adv", "state-dis");
   if (adState === "normal") {
@@ -252,7 +267,7 @@ function initEvents() {
 
   // Combat panel
   btnCombat.addEventListener("click", () => toggleCombatPanel());
-  btnCombatClose.addEventListener("click", () => toggleCombatPanel(false));
+  // btnCombatClose.addEventListener("click", () => toggleCombatPanel(false));
   btnCombatReset.addEventListener("click", resetCombatState);
 
   // Save combat fields live
@@ -267,24 +282,31 @@ function initEvents() {
     if (e.key === "Enter") rollDice();
   });
 
-// Qty: al tocar, selecciona todo (móvil-friendly)
-function selectAll(el) {
-  // iOS/Android a veces necesitan un micro-delay
-  setTimeout(() => {
-    try {
-      el.focus({ preventScroll: true });
-      el.select();
-      // fallback por si select() no funciona en algún dispositivo
-      if (typeof el.setSelectionRange === "function") {
-        el.setSelectionRange(0, el.value.length);
-      }
-    } catch {}
-  }, 0);
-}
-
 qtyEl.addEventListener("focus", () => selectAll(qtyEl));
 qtyEl.addEventListener("click", () => selectAll(qtyEl));
 
+  // HUD: editar HP/Counter sin abrir panel
+  if (hudHp && hudCounter && hudOpenCombat) {
+    hudHp.addEventListener("input", () => {
+      hpEl.value = hudHp.value;
+      saveCombatState();
+    });
+
+    hudCounter.addEventListener("input", () => {
+      counterEl.value = hudCounter.value;
+      saveCombatState();
+    });
+
+    hudOpenCombat.addEventListener("click", () => {
+      toggleCombatPanel(true);
+    });
+  }
+
+  // Al cerrar el panel, refresca HUD (solo UNA vez)
+  btnCombatClose.addEventListener("click", () => {
+    toggleCombatPanel(false);
+    refreshHud();
+  });
 }
 
 function refreshHud() {
@@ -320,26 +342,6 @@ function registerServiceWorker() {
     }
   });
 }
-
-hudHp.addEventListener("input", () => {
-  hpEl.value = hudHp.value;
-  saveCombatState();
-});
-
-hudCounter.addEventListener("input", () => {
-  counterEl.value = hudCounter.value;
-  saveCombatState();
-});
-
-hudOpenCombat.addEventListener("click", () => {
-  toggleCombatPanel(true);
-});
-
-btnCombatClose.addEventListener("click", () => {
-  toggleCombatPanel(false);
-  refreshHud();
-});
-
 
 function init() {
   // Defaults
