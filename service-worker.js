@@ -1,4 +1,4 @@
-const CACHE_NAME = "dice-offline-v7";
+const CACHE_NAME = "dice-offline-v9";
 const ASSETS = [
   "./",
   "./index.html",

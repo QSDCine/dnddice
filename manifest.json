@@ -1,8 +1,8 @@
 {
-  "name": "Dice Offline",
-  "short_name": "Dice",
+  "name": "D&D Roll Dice",
+  "short_name": "D&D Roll Dice",
   "start_url": "./index.html",
-  "display": "standalone",
+  "display": "fullscreen",
   "background_color": "#0b0f14",
   "theme_color": "#0b0f14",
   "icons": [
