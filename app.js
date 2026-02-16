@@ -133,7 +133,13 @@ function escapeHtml(str) {
 
 function setOutput(html) {
   output.innerHTML = html;
+
+  // Auto-scroll al final para ver el resultado más nuevo
+  requestAnimationFrame(() => {
+    output.scrollTop = output.scrollHeight;
+  });
 }
+
 
 function clearOutput() {
   setOutput(`<div class="outputEmpty">Ready to roll!</div>`);
@@ -260,6 +266,25 @@ function initEvents() {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Enter") rollDice();
   });
+
+// Qty: al tocar, selecciona todo (móvil-friendly)
+function selectAll(el) {
+  // iOS/Android a veces necesitan un micro-delay
+  setTimeout(() => {
+    try {
+      el.focus({ preventScroll: true });
+      el.select();
+      // fallback por si select() no funciona en algún dispositivo
+      if (typeof el.setSelectionRange === "function") {
+        el.setSelectionRange(0, el.value.length);
+      }
+    } catch {}
+  }, 0);
+}
+
+qtyEl.addEventListener("focus", () => selectAll(qtyEl));
+qtyEl.addEventListener("click", () => selectAll(qtyEl));
+
 }
 
 function refreshHud() {

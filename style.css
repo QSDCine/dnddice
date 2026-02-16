@@ -158,6 +158,21 @@ button.secondary:hover { background: var(--btn2); }
 .adBtn.state-adv { background: rgba(34,197,94,0.18); border-color: rgba(34,197,94,0.35); }
 .adBtn.state-dis { background: rgba(239,68,68,0.18); border-color: rgba(239,68,68,0.35); }
 
+button{
+  color: rgba(255,255,255,0.92);
+}
+
+button.primary,
+button.secondary,
+.adBtn{
+  color: rgba(255,255,255,0.92);
+}
+
+#btnRoll{
+  font-weight: 800;
+}
+
+
 .hint {
   margin-top: 10px;
   font-size: 0.85rem;
@@ -175,7 +190,7 @@ button.secondary:hover { background: var(--btn2); }
   line-height: 1.6;
   cursor: pointer;
   white-space: pre-wrap;
-}
+  }
 
 .outputEmpty {
   color: rgba(255,255,255,0.50);
@@ -260,7 +275,7 @@ body { overflow-x: hidden; }
 .output {
   max-height: 20vh;
   overflow-y: auto;
-}
+  }
 
 .combatHud{
 
