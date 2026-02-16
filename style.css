@@ -38,9 +38,9 @@ body {
 }
 
 .app {
-  width: min(720px, 100%);
+  width: min(500px, 100%);
   display: grid;
-  gap: 14px;
+  gap: 5px;
 }
 
 .topbar {
@@ -263,7 +263,7 @@ body { overflow-x: hidden; }
 }
 
 .combatHud{
-  margin-bottom: 12px;
+
   padding: 10px;
   border-radius: 16px;
   background: rgba(255,255,255,0.04);
