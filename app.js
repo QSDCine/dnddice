@@ -6,6 +6,9 @@ const btnRoll = qs("#btnRoll");
 const btnClear = qs("#btnClear");
 const output = qs("#output");
 const btnAD = qs("#btnAD");
+const dieBtn = qs("#dieBtn");
+const dieMenu = qs("#dieMenu");
+
 
 const btnCombat = qs("#btnCombat");
 const combatPanel = qs("#combatPanel");
@@ -309,6 +312,59 @@ qtyEl.addEventListener("click", () => selectAll(qtyEl));
     toggleCombatPanel(false);
     refreshHud();
   });
+  // --- Custom Select Dice (robusto: si falta algo, no hace nada) ---
+  if (dieBtn && dieMenu && dieEl) {
+    const syncDieUI = () => {
+      const v = String(clampInt(dieEl.value, 2, 100));
+      dieBtn.textContent = `d${v}`;
+      dieMenu.querySelectorAll(".menuItem").forEach((b) => {
+        b.classList.toggle("selected", b.dataset.value === v);
+      });
+    };
+
+    const openMenu = () => {
+      dieMenu.classList.remove("hidden");
+      dieBtn.setAttribute("aria-expanded", "true");
+      syncDieUI();
+    };
+
+    const closeMenu = () => {
+      dieMenu.classList.add("hidden");
+      dieBtn.setAttribute("aria-expanded", "false");
+    };
+
+    dieBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !dieMenu.classList.contains("hidden");
+      if (isOpen) closeMenu();
+      else openMenu();
+    });
+
+    dieMenu.addEventListener("click", (e) => {
+      const item = e.target.closest(".menuItem");
+      if (!item) return;
+
+      dieEl.value = item.dataset.value;
+
+      // Dispara tu listener existente de dieEl ("change") para updateADVisibility()
+      dieEl.dispatchEvent(new Event("change", { bubbles: true }));
+
+      syncDieUI();
+      closeMenu();
+    });
+
+    // Cierra tocando fuera
+    document.addEventListener("click", closeMenu);
+
+    // Cierra con Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    });
+
+    // Inicializa el texto del botón según el select real
+    syncDieUI();
+  }
+
 }
 
 function refreshHud() {

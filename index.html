@@ -88,19 +88,41 @@
           <input id="qty" type="number" inputmode="numeric" min="1" max="100" value="1" />
         </label>
 
-        <label class="field rightCol">
-          <span class="label">Dice:</span>
-          <select id="die">
-            <option value="2">d2</option>
-            <option value="4">d4</option>
-            <option value="6">d6</option>
-            <option value="8">d8</option>
-            <option value="10">d10</option>
-            <option value="12">d12</option>
-            <option value="20" selected>d20</option>
-            <option value="100">d100</option>
-          </select>
-        </label>
+<div class="field rightCol diceField">
+  <span class="label">Dice:</span>
+
+  <!-- Select real, oculto -->
+  <select id="die" class="srOnly" aria-hidden="true" tabindex="-1">
+    <option value="2">d2</option>
+    <option value="4">d4</option>
+    <option value="6">d6</option>
+    <option value="8">d8</option>
+    <option value="10">d10</option>
+    <option value="12">d12</option>
+    <option value="20" selected>d20</option>
+    <option value="100">d100</option>
+  </select>
+
+  <!-- Label solo para 1 control (el botón fake) -->
+  <label class="srOnly" for="dieBtn">Dice</label>
+  <button id="dieBtn" class="selectFake" type="button" aria-haspopup="listbox" aria-expanded="false">
+    d20
+  </button>
+
+  <!-- Menú fuera del label -->
+  <div id="dieMenu" class="menu hidden" role="listbox" aria-label="Select dice">
+    <button type="button" class="menuItem" role="option" data-value="2">d2</button>
+    <button type="button" class="menuItem" role="option" data-value="4">d4</button>
+    <button type="button" class="menuItem" role="option" data-value="6">d6</button>
+    <button type="button" class="menuItem" role="option" data-value="8">d8</button>
+    <button type="button" class="menuItem" role="option" data-value="10">d10</button>
+    <button type="button" class="menuItem" role="option" data-value="12">d12</button>
+    <button type="button" class="menuItem" role="option" data-value="20">d20</button>
+    <button type="button" class="menuItem" role="option" data-value="100">d100</button>
+  </div>
+</div>
+
+
 
         <button id="btnAD" class="adBtn" type="button" aria-label="Advantage and Disadvantage">
           A/D
