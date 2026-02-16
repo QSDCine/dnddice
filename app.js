@@ -287,9 +287,13 @@ qtyEl.addEventListener("focus", () => selectAll(qtyEl));
 qtyEl.addEventListener("click", () => selectAll(qtyEl));
 
   // HUD: editar HP/Counter sin abrir panel
-  if (hudHp && hudCounter && hudOpenCombat) {
+   // HUD: editar HP/Counter sin abrir panel (sync 2-way)
+  if (hudHp && hudCounter) {
     hudHp.addEventListener("input", () => {
+      // 1) HUD -> Combat input
       hpEl.value = hudHp.value;
+
+      // 2) Guardar y refrescar (HUD se repinta, pero con el mismo valor)
       saveCombatState();
     });
 
@@ -297,11 +301,8 @@ qtyEl.addEventListener("click", () => selectAll(qtyEl));
       counterEl.value = hudCounter.value;
       saveCombatState();
     });
-
-    hudOpenCombat.addEventListener("click", () => {
-      toggleCombatPanel(true);
-    });
   }
+
 
   // Al cerrar el panel, refresca HUD (solo UNA vez)
   btnCombatClose.addEventListener("click", () => {
@@ -323,8 +324,10 @@ function refreshHud() {
   hudAc.textContent = ac || "—";
   hudMaxHp.textContent = maxhp || "—";
 
-  hudHp.value = hp;
-  hudCounter.value = counter;
+  // Si el usuario está escribiendo en HUD, no le pises el input en caliente
+  if (document.activeElement !== hudHp) hudHp.value = hp;
+  if (document.activeElement !== hudCounter) hudCounter.value = counter;
+
 }
 
 

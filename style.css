@@ -358,7 +358,6 @@ body { overflow-x: hidden; }
 }
 
 
-
 @media (max-width: 560px) {
   .controls {
     grid-template-columns: 1fr 1fr;
@@ -368,3 +367,99 @@ body { overflow-x: hidden; }
   #btnClear { grid-column: 1 / -1; }
   .combatGrid { grid-template-columns: 1fr; }
 }
+
+/* HUD: la 1ª línea (AC / Max HP) en 2 columnas */
+.combatHud .hudLine:first-child{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* Max HP a la derecha */
+.combatHud .hudLine:first-child .hudText:last-child{
+  text-align: right;
+}
+
+/* HUD: la 2ª línea (HP / Counter / Edit) */
+.combatHud .hudLine:nth-child(2){
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* HP | Counter */
+  gap: 10px;
+}
+
+/* “Counter” (2º label) alineado a la derecha */
+.combatHud .hudLine:nth-child(2) .hudField:nth-child(2){
+  justify-items: end;       /* empuja texto e input a la derecha */
+  text-align: right;
+}
+
+/* Inputs del HUD ocupan ancho dentro de su celda */
+.combatHud .hudField input{
+  width: 100%;
+}
+
+
+.advTag, .disTag{
+  padding: 1px 6px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+
+.advTag{
+  background: rgba(34,197,94,0.15);
+  border-color: rgba(34,197,94,0.35);
+}
+
+.disTag{
+  background: rgba(239,68,68,0.15);
+  border-color: rgba(239,68,68,0.35);
+}
+
+
+/* HUD compacto: una sola línea */
+.hudCompact{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+.hudChip{
+  color: var(--muted);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.hudChip strong{
+  color: var(--text);
+}
+
+.hudInput{
+  width: 72px;
+  max-width: 72px;
+  padding: 8px 8px;
+  border-radius: 12px;
+}
+
+.hudSlash{
+  color: var(--muted);
+  opacity: 0.9;
+}
+
+.hudCompact{
+  display:flex;
+  align-items:center;
+}
+
+.hudGroup{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.hudRight{
+  margin-left:auto; /* empuja Counter a la derecha */
+}
+
+

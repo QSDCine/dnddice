@@ -37,25 +37,23 @@
     </header>
 
 <div id="combatHud" class="combatHud hidden">
-  <div class="hudLine">
-    <span class="hudText">AC: <strong id="hudAc">—</strong></span>
-    <span class="hudText">Max HP: <strong id="hudMaxHp">—</strong></span>
-  </div>
+  <div class="hudCompact">
+<span class="hudGroup">
+  <span class="hudChip">AC: <strong id="hudAc">—</strong></span>
 
-  <div class="hudLine">
-    <label class="hudField">
-      <span>HP</span>
-      <input id="hudHp" type="number" inputmode="numeric" />
-    </label>
+  <span class="hudChip">HP:</span>
+  <input id="hudHp" class="hudInput" type="number" inputmode="numeric" />
+  <span class="hudSlash">/</span>
+  <span class="hudChip"><strong id="hudMaxHp">—</strong></span>
+</span>
 
-    <label class="hudField">
-      <span>Counter</span>
-      <input id="hudCounter" type="number" inputmode="numeric" />
-    </label>
-
-    <button id="hudOpenCombat" class="secondary hudBtn" type="button" style="display: none;">Edit</button>
+<span class="hudGroup hudRight">
+  <span class="hudChip">Counter:</span>
+  <input id="hudCounter" class="hudInput" type="number" inputmode="numeric" />
+</span>
   </div>
 </div>
+
 
 <section id="combatPanel" class="combat hidden" aria-label="Combat">
       <div class="combatHeader">
