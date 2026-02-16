@@ -230,11 +230,20 @@ button.secondary,
   font-size: 1rem;
 }
 
-.combatGrid {
-  display: grid;
-  gap: 10px;
+.combatGrid{
+  display:grid;
+  gap:10px;
   grid-template-columns: 1fr 1fr;
 }
+
+.f-ac{ grid-column:1; grid-row:1; }
+.f-counter{ grid-column:2; grid-row:1; }
+.f-maxhp{ grid-column:1; grid-row:2; }
+.f-hp{ grid-column:2; grid-row:2; }
+
+#btnCombatReset{ grid-column:1 / -1; }
+
+
 
 
 .wide {
@@ -317,6 +326,25 @@ body { overflow-x: hidden; }
 .hudBtn{
   height: 42px;
   align-self: end;
+}
+
+.output{
+  font-size: 1.10rem; /* prueba 1.10, si lo quieres menos: 1.05 */
+}
+
+.rollLine{
+  font-size: inherit;
+}
+
+.hudLine{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.hudLine .hudText:last-child{
+  text-align: right;
 }
 
 
