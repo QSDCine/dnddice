@@ -16,15 +16,9 @@
     <header class="topbar">
       <div class="brand">
         <div class="logo" aria-hidden="true">
-  <svg viewBox="0 0 64 64" class="d20" aria-hidden="true">
-    <path d="M32 4 L56 20 L52 48 L32 60 L12 48 L8 20 Z" fill="none" stroke="currentColor" stroke-width="2"/>
-    <path d="M32 4 L32 60" fill="none" stroke="currentColor" stroke-width="2" opacity="0.7"/>
-    <path d="M8 20 L56 20" fill="none" stroke="currentColor" stroke-width="2" opacity="0.7"/>
-    <path d="M12 48 L52 48" fill="none" stroke="currentColor" stroke-width="2" opacity="0.7"/>
-    <path d="M8 20 L32 60 L56 20" fill="none" stroke="currentColor" stroke-width="2" opacity="0.7"/>
-    <path d="M12 48 L32 4 L52 48" fill="none" stroke="currentColor" stroke-width="2" opacity="0.7"/>
-  </svg>
-</div>
+          <img src="d20.svg" alt="" class="d20img" />
+
+        </div>
 
         <div class="title">
           <h1>D&amp;D - Roll the dice!</h1>
@@ -94,7 +88,7 @@
           <input id="qty" type="number" inputmode="numeric" min="1" max="100" value="1" />
         </label>
 
-        <label class="field">
+        <label class="field rightCol">
           <span class="label">Dice:</span>
           <select id="die">
             <option value="2">d2</option>
@@ -112,7 +106,7 @@
           A/D
         </button>
 
-        <button id="btnRoll" class="primary" type="button">
+        <button id="btnRoll" class="primary rightCol" type="button">
           ROLL!
         </button>
 

@@ -96,7 +96,7 @@ body {
 .controls {
   display: grid;
   grid-template-columns: 1fr 1fr auto auto auto;
-  gap: 10px;
+  gap: 6px;
   align-items: end;
 }
 
@@ -460,6 +460,23 @@ body { overflow-x: hidden; }
 
 .hudRight{
   margin-left:auto; /* empuja Counter a la derecha */
+}
+
+/* Solo los elementos marcados: pegados a la derecha de su celda */
+.rightCol{
+  justify-self: right;
+}
+
+.rightCol .label{
+  padding-right: 6px;
+}
+
+.d20img{
+  width: 36px;
+  height: 35px;
+  display: block;
+  filter: brightness(0) invert(1); /* lo vuelve blanco en tema oscuro */
+  opacity: 0.92;
 }
 
 
