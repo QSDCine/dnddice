@@ -572,4 +572,39 @@ label.rightCol select#die{
   transform: translate(-70px, -150px);
 }
 
+/* =========================
+   LOCK: layout móvil siempre
+   ========================= */
+
+/* Centrar la app en cualquier ancho */
+body{
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 18px;
+}
+
+/* Mantén el ancho “de móvil” sin cortar */
+.app{
+  width: 400px;        /* tu ancho ideal */
+  max-width: 400px;    /* no crece aunque la ventana sea mayor */
+}
+
+/* Evita scroll lateral raro */
+html, body{
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* BLOQUEA el layout de controls al estilo móvil SIEMPRE */
+.controls{
+  grid-template-columns: 1fr 1fr !important;
+}
+
+/* Mantén la colocación como en móvil */
+.adBtn{ grid-column: 1 / 2; }
+#btnRoll{ grid-column: 2 / 3; }
+#btnClear{ grid-column: 1 / -1; }
 
