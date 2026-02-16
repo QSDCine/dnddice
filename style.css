@@ -473,7 +473,7 @@ body { overflow-x: hidden; }
 
 .d20img{
   width: 36px;
-  height: 35px;
+  height: 40px;
   display: block;
   filter: brightness(0) invert(1); /* lo vuelve blanco en tema oscuro */
   opacity: 0.92;
@@ -535,7 +535,6 @@ label.rightCol select#die{
 .menu{
   position: absolute;
   right: 0;
-  top: calc(100% + 6px);
   z-index: 9999;
   width: min(100px, 90vw);
   background: #0b0f14;
@@ -565,3 +564,12 @@ label.rightCol select#die{
 
 
 .hidden { display: none !important; }
+
+/* Posicion menu */
+
+.menu{
+  top: calc(100% + 6px);
+  transform: translate(-70px, -150px);
+}
+
+
