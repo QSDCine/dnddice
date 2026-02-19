@@ -1,6 +1,5 @@
-const CACHE_NAME = "dice-offline-v10";
+const CACHE_NAME = "dice-offline-v11";
 
-// Cachea ambas variantes (con y sin ./) para evitar el lío de rutas
 const ASSETS = [
   "./",
   "./index.html",
@@ -9,19 +8,20 @@ const ASSETS = [
   "./manifest.json",
   "./icon-192.png",
   "./icon-512.png",
+  "./d20.svg",
+
   "index.html",
   "style.css",
   "app.js",
   "manifest.json",
   "icon-192.png",
   "icon-512.png",
+  "d20.svg",
 ];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(ASSETS))
-      .catch(() => caches.open(CACHE_NAME)) // que NO muera la instalación por un 404 tonto
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
   );
   self.skipWaiting();
 });
@@ -38,15 +38,21 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   const req = event.request;
 
-  // Navegaciones (abrir la app / refrescar): devuelve el index cacheado si estás offline
+  // Navegaciones: App Shell offline
   if (req.mode === "navigate") {
     event.respondWith(
-      fetch(req).catch(() => caches.match("./index.html"))
+      fetch(req).catch(async () => {
+        const cache = await caches.open(CACHE_NAME);
+        return (
+          (await cache.match("./")) ||
+          (await cache.match("./index.html")) ||
+          (await cache.match("index.html"))
+        );
+      })
     );
     return;
   }
 
-  // Solo GET
   if (req.method !== "GET") return;
 
   event.respondWith(
@@ -61,7 +67,7 @@ self.addEventListener("fetch", (event) => {
           }
           return res;
         })
-        .catch(() => caches.match("./index.html"));
+        .catch(() => caches.match("./"));
     })
   );
 });
